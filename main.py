@@ -2,17 +2,39 @@ from res import *
 from time import sleep
 
 if __name__ == "__main__":
-    driver, driver_and_wait = load_okta()
-    (
-        okta_click(config.laptop_okta_x, config.laptop_okta_y)
-        if config.ui == "laptop"
-        else None
-    )
-    input_text(config.password)
-    (
-        password_click(config.laptop_pas_x, config.laptop_pas_y)
-        if config.ui == "laptop"
-        else password_click(config.station_pas_x, config.station_pas_y)
-    )
-    sleep(10)
-    navigate_site(driver, driver_and_wait)
+    # Set up the driver and wait
+    driver, driver_wait = setup_driver()
+
+    try:
+        # Load OKTA login page
+        load_okta(driver, driver_wait, config.url)
+
+        # Perform actions based on config.ui
+        (
+            okta_click(config.laptop_okta_x, config.laptop_okta_y)
+            if config.ui == "laptop"
+            else None
+        )
+        input_text(config.password)
+        (
+            password_click(config.laptop_pas_x, config.laptop_pas_y)
+            if config.ui == "laptop"
+            else password_click(config.station_pas_x, config.station_pas_y)
+        )
+        sleep(10)
+
+        # Navigate through the site
+        navigate_to_time_absence(driver, driver_wait)
+        open_enter_time_off(driver, driver_wait)
+        select_this_week(driver, driver_wait)
+        click_actions_button(driver, driver_wait)
+        click_quick_add(driver, driver_wait)
+        click_next_button(driver, driver_wait)
+        fill_hours(driver, driver_wait)
+        click_checkboxes(driver, driver_wait)
+        click_ok_button(driver, driver_wait)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        driver.quit()
