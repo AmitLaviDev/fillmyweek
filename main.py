@@ -35,6 +35,7 @@ if __name__ == "__main__":
         )
         click_checkboxes(driver, driver_wait)
         click_ok_button(driver, driver_wait)
+        sleep(5)
 
     except Exception as e:
         print(f"An error occurred: {e}")
