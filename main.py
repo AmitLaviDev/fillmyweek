@@ -30,11 +30,11 @@ if __name__ == "__main__":
         click_actions_button(driver, driver_wait)
         click_quick_add(driver, driver_wait)
         click_next_button(driver, driver_wait)
-        fill_hours(driver, driver_wait)
+        fill_hours(driver, driver_wait, in_time=config.start_time, out_time=config.end_time)
         click_checkboxes(driver, driver_wait)
         click_ok_button(driver, driver_wait)
 
     except Exception as e:
         print(f"An error occurred: {e}")
-    finally:
-        driver.quit()
+    # finally:
+    #     driver.quit()

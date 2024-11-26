@@ -7,3 +7,5 @@ laptop_pas_x = 800
 laptop_pas_y = 450
 station_pas_x = 1370
 station_pas_y = 550
+start_time = "09:00"
+end_time = "18:00"

@@ -168,7 +168,7 @@ def click_next_button(driver, driver_wait):
         print(f"Error clicking 'Next' button: {e}")
 
 
-def fill_hours(driver, driver_wait, in_time="09:00", out_time="18:00"):
+def fill_hours(driver, driver_wait, in_time, out_time):
     """
     Fills the 'In' and 'Out' time input fields in the main panel.
     Args:
@@ -178,28 +178,30 @@ def fill_hours(driver, driver_wait, in_time="09:00", out_time="18:00"):
         out_time (str): The time to set for the 'Out' field (default: "18:00").
     """
     try:
-        # Wait for the main panel to be present
-        main_panel = driver_wait.until(
+        # Wait for the panel container to be present
+        panel_container = driver_wait.until(
             EC.presence_of_element_located(
                 (By.XPATH, "//div[@data-automation-id='panelSet']")
             )
         )
-        print("Main panel is visible.")
+        print("Panel container is visible.")
 
-        # Locate the "In" input field and set the time
-        in_input = main_panel.find_element(
+        # Locate the 'In' input field within the panel container
+        in_input = panel_container.find_element(
             By.XPATH,
-            ".//input[@type='text' and @aria-labelledby='56$212662--uid123-formLabel']",
+            ".//input[@type='text' and @aria-labelledby='56$212662--uid122-formLabel']",
         )
+        driver.execute_script("arguments[0].scrollIntoView(true);", in_input)
         in_input.clear()  # Clear any pre-existing value
         in_input.send_keys(in_time)  # Enter the 'In' time
         print(f"Set 'In' time to {in_time}.")
 
-        # Locate the "Out" input field and set the time
-        out_input = main_panel.find_element(
+        # Locate the 'Out' input field within the panel container
+        out_input = panel_container.find_element(
             By.XPATH,
-            ".//input[@type='text' and @aria-labelledby='56$212661--uid124-formLabel']",
+            ".//input[@type='text' and @aria-labelledby='56$212661--uid123-formLabel']",
         )
+        driver.execute_script("arguments[0].scrollIntoView(true);", out_input)
         out_input.clear()  # Clear any pre-existing value
         out_input.send_keys(out_time)  # Enter the 'Out' time
         print(f"Set 'Out' time to {out_time}.")
