@@ -185,11 +185,10 @@ def fill_hours(driver, driver_wait, in_time, out_time):
             )
         )
         print("Panel container is visible.")
-
         # Locate the 'In' input field within the panel container
         in_input = panel_container.find_element(
             By.XPATH,
-            ".//input[@type='text' and @aria-labelledby='56$212662--uid122-formLabel']",
+            ".//input[@type='text' and @aria-labelledby='56$212662--uid111-formLabel']",
         )
         driver.execute_script("arguments[0].scrollIntoView(true);", in_input)
         in_input.clear()  # Clear any pre-existing value
@@ -199,7 +198,7 @@ def fill_hours(driver, driver_wait, in_time, out_time):
         # Locate the 'Out' input field within the panel container
         out_input = panel_container.find_element(
             By.XPATH,
-            ".//input[@type='text' and @aria-labelledby='56$212661--uid123-formLabel']",
+            ".//input[@type='text' and @aria-labelledby='56$212661--uid112-formLabel']",
         )
         driver.execute_script("arguments[0].scrollIntoView(true);", out_input)
         out_input.clear()  # Clear any pre-existing value
