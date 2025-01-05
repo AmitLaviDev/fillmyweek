@@ -1,7 +1,23 @@
+import argparse
 from res import *
 from time import sleep
 
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Fill My Week Automation Script")
+    parser.add_argument(
+        "-ui",
+        choices=["laptop", "pc"],
+        required=True,
+        help="Specify UI type: 'laptop' or 'pc'",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
+    # Parse arguments
+    args = parse_args()
+
     # Set up the driver and wait
     driver, driver_wait = setup_driver()
 
@@ -9,18 +25,17 @@ if __name__ == "__main__":
         # Load OKTA login page
         load_okta(driver, driver_wait, config.url)
 
-        # Perform actions based on config.ui
-        (
+        # Perform actions based on the UI flag
+        if args.ui == "laptop":
             okta_click(config.laptop_okta_x, config.laptop_okta_y)
-            if config.ui == "laptop"
-            else None
-        )
-        input_text(config.password)
-        (
+            sleep(2)
+            input_text(config.password)
             password_click(config.laptop_pas_x, config.laptop_pas_y)
-            if config.ui == "laptop"
-            else password_click(config.station_pas_x, config.station_pas_y)
-        )
+        else:
+            sleep(2)
+            input_text(config.password)
+            password_click(config.station_pas_x, config.station_pas_y)
+
         sleep(10)
 
         # Navigate through the site

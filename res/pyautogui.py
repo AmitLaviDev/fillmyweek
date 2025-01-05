@@ -1,5 +1,8 @@
 import pyautogui
+from pynput.keyboard import Controller
 from time import sleep
+
+keyboard = Controller()
 
 
 def okta_click(x, y):
@@ -9,13 +12,7 @@ def okta_click(x, y):
 
 def input_text(text):
     for char in text:
-        if char.isupper():
-            # Press Shift + character for uppercase letters
-            pyautogui.keyDown("shift")
-            pyautogui.press(char.lower())
-            pyautogui.keyUp("shift")
-        else:
-            pyautogui.press(char)
+        keyboard.type(char)
         sleep(0.05)
 
 
