@@ -1,4 +1,3 @@
-ui = "laptop"
 url = "https://wd5.myworkday.com/wday/authgwy/kyndryl/login-saml2.htmld"
 laptop_okta_x = 750
 laptop_okta_y = 420
