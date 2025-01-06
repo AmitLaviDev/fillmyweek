@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
         # Perform actions based on the UI flag
         if args.ui == "laptop":
+            sleep(1)
             okta_click(config.laptop_okta_x, config.laptop_okta_y)
-            sleep(2)
             input_text(config.password)
             password_click(config.laptop_pas_x, config.laptop_pas_y)
         else:
@@ -54,5 +54,5 @@ if __name__ == "__main__":
 
     except Exception as e:
         print(f"An error occurred: {e}")
-    finally:
-        driver.quit()
+    # finally:
+    #     driver.quit()
