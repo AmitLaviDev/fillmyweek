@@ -1,7 +1,7 @@
-url = "https://wd5.myworkday.com/wday/authgwy/kyndryl/login-saml2.htmld"
+url = ""
 laptop_okta_x = 750
 laptop_okta_y = 420
-password = "Eden7498Amit1909"
+password = ""
 laptop_pas_x = 800
 laptop_pas_y = 450
 station_pas_x = 1370
